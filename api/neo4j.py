@@ -7,14 +7,14 @@ from neo4j import GraphDatabase
 """
 Initiate the Neo4j Driver
 """
-# tag::initDriver[]
 def init_driver(uri, username, password):
-    # TODO: Create an instance of the driver here
-    current_app.driver = None
+    # Create an instance of the driver
+    current_app.driver = GraphDatabase.driver("bolt://3.82.208.184:7687", auth=("neo4j", "tails-limitation-handlers"))
 
-    return None
-# end::initDriver[]
+    # Verify Connectivity
+    current_app.driver.verify_connectivity()
 
+    return current_app.driver
 
 """
 Get the instance of the Neo4j Driver created in the `initDriver` function
